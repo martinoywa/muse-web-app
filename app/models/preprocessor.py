@@ -15,6 +15,9 @@ def audio_preprocessor(spectrogram):
 
 
 def lyrics_preprocessor(lyrics):
+    if type(lyrics) == list:
+        lyrics = "".join(lyrics).replace("\n", " ")
+
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased",
                                               do_lower_case=True)
 
