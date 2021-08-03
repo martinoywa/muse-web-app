@@ -1,37 +1,14 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
+from flask_login import login_required, current_user
 
 
-home = Blueprint("home", __name__)
-@home.route("/")
+main = Blueprint("main", __name__)
+
+@main.route("/")
 def index():
-    return "Home Page"
+    return render_template("index.html")
 
-
-login = Blueprint("login", __name__)
-@login.route("/login")
-def user_login():
-    return "Log In Page"
-
-
-signup = Blueprint("signup", __name__)
-@signup.route("/signup")
-def user_signup():
-    return "Sign Up Page"
-
-
-details = Blueprint("details", __name__)  # song details
-@details.route("/details/id")
-def song_details(id):
-    return "Details Page"
-
-
-list = Blueprint("list", __name__)  # list per quadrant
-@list.route("/list/id")
-def quadrant_list(id):
-    return "List Page"
-
-
-upload = Blueprint("upload", __name__)
-@upload.route("/upload")
-def song_upload():
-    return "Upload Page"
+@main.route("/profile")
+@login_required
+def profile():
+    return render_template("profile.html", name=current_user.name)
