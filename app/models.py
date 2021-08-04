@@ -11,8 +11,9 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f"<User: {self.username}>"
 
-class Songs(db.Model):
+class Track(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    quadrant = db.Column(db.Integer)
     title = db.Column(db.String(120))
     name = db.Column(db.String(1000))
     album = db.Column(db.String(128))
