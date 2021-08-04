@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<table class="table hoverable is-fullwidth">
+  <tr>
+    <th colspan="3" scope="colgroup">Joyful Q1</th>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Artist</th>
+  </tr>
+  <tr>
+  {% for song in list_q1 %}
+  <tr>
+    <td>{{ song.id }}</td>
+    <td>{{ song.title }}</td>
+    <td>{{ song.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<table class="table hoverable is-fullwidth">
+  <tr>
+    <th colspan="3" scope="colgroup">Anger Q2</th>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Artist</th>
+  </tr>
+  {% for song in list_q2 %}
+  <tr>
+    <td>{{ song.id }}</td>
+    <td>{{ song.title }}</td>
+    <td>{{ song.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<table class="table hoverable is-fullwidth">
+  <tr>
+    <th colspan="3" scope="colgroup">Sadness Q3</th>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Artist</th>
+  </tr>
+  <tr>
+  {% for song in list_q3 %}
+  <tr>
+    <td>{{ song.id }}</td>
+    <td>{{ song.title }}</td>
+    <td>{{ song.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<table class="table hoverable is-fullwidth">
+  <tr>
+    <th colspan="3" scope="colgroup">Tenderness Q4</th>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Artist</th>
+  </tr>
+  <tr>
+  {% for song in list_q4 %}
+  <tr>
+    <td>{{ song.id }}</td>
+    <td>{{ song.title }}</td>
+    <td>{{ song.name }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
