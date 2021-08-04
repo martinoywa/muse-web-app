@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Upload{% endblock %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/upload">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="title" placeholder="Song Title" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="name" placeholder="Artist Name" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="album" placeholder="Album Name" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="lyrics" placeholder="Lyrics" autofocus="">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="file" name="song" placeholder="Song File .MP3" autofocus="">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">Upload</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
