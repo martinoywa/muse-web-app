@@ -3,7 +3,11 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
+{% for song in list %}
+  <h2>{{ song.title }}</h2>
+  <h2>{{ song.album }}</h2>
+  <h2>{{ song.name }}</h2>
+  <h2>{{ song.lyrics }}</h2>
+  <hr />
+{% endfor %}
 {% endblock %}

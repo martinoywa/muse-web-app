@@ -21,7 +21,7 @@ def login():
             return redirect(url_for("auth.login"))
         else:
             login_user(user, remember=remember)
-            return redirect(url_for("main.profile"))
+            return redirect(url_for("main.playlist"))
     # if request.method == "GET":
     return render_template("login.html")
 

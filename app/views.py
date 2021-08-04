@@ -12,10 +12,11 @@ def index():
     return render_template("index.html")
 
  
-@main.route("/profile")
+@main.route("/playlist")
 @login_required
-def profile():
-    return render_template("profile.html", name=current_user.name)
+def playlist():
+    list = Songs.query.all()
+    return render_template("playlist.html", list=list)
 
 @main.route("/upload", methods=["GET", "POST"])
 @login_required
@@ -26,9 +27,6 @@ def upload():
         album = request.form.get("album")
         lyrics = request.form.get("lyrics")
         song_file = request.form.get("song")
-
-        print(type(song_file))
-        print(song_file)
 
         song = Songs.query.filter_by(title=title).first()
 
@@ -41,5 +39,5 @@ def upload():
         db.session.add(new_song)
         db.session.commit()
 
-        return redirect(url_for("main.profile"))
+        return redirect(url_for("main.playlist"))
     return render_template("upload.html")
