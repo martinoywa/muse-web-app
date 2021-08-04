@@ -1,9 +1,9 @@
 import os
 import unittest
 from pathlib import Path
-from app.models.loaders import *
-from app.models.preprocessor import *
-from app.models.inference import *
+from app.model.loaders import *
+from app.model.preprocessor import *
+from app.model.inference import *
 
 
 class MyTestCase(unittest.TestCase):
