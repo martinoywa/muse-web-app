@@ -36,7 +36,7 @@ def upload():
         name = request.form.get("name")
         album = request.form.get("album")
         lyrics = request.form.get("lyrics")
-        song_file = request.files["file"]
+        song_file = request.files["song"]
 
         song = Track.query.filter_by(title=title).first()
         artist = Track.query.filter_by(name=name).first()

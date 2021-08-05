@@ -13,7 +13,6 @@ def create_spectrogram(file):
     FS, data = wavfile.read(wname)  # read wav file
 
     # plot spectrogram
-    print(data.shape)
     plt.specgram(data, Fs=FS, NFFT=1024, noverlap=0)
     plt.xticks([])
     plt.yticks([])
