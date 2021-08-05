@@ -3,9 +3,10 @@ from flask_login import login_required, current_user
 from .models import Track
 from app import db
 
-from random import randint
+from .spectrogram import create_spectrogram
+from .model.inference import aggregate_inference
 
-random_quadrant = randint(1, 4)
+from pathlib import Path
 
 
 main = Blueprint("main", __name__)
@@ -35,20 +36,28 @@ def upload():
         name = request.form.get("name")
         album = request.form.get("album")
         lyrics = request.form.get("lyrics")
-        song_file = request.form.get("song")
-        quadrant = random_quadrant
+        song_file = request.files["file"]
 
         song = Track.query.filter_by(title=title).first()
+        artist = Track.query.filter_by(name=name).first()
 
-        if song:
+        if song and artist:
             flash("Song by already exists")
             return redirect(url_for("main.upload"))
 
-        new_song = Track(quadrant=quadrant, title=title, name=name, album=album,
-                         lyrics=lyrics)
+        # create spectrogram and get quadrant
+        create_spectrogram(song_file)
+        spectrogram = Path("app/static/spectrogram/file.png")
+        quadrant = aggregate_inference(spectrogram, lyrics)
 
-        db.session.add(new_song)
-        db.session.commit()
+        if quadrant:
+            new_song = Track(quadrant=quadrant, title=title, name=name, album=album,
+                             lyrics=lyrics)
+            db.session.add(new_song)
+            db.session.commit()
+        else:
+            flash("Failed to process cluster")
+            return redirect(url_for("main.upload"))
 
         return redirect(url_for("main.playlist"))
     return render_template("upload.html")
