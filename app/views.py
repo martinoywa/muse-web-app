@@ -61,3 +61,9 @@ def upload():
 
         return redirect(url_for("main.playlist"))
     return render_template("upload.html")
+
+@main.route("/track/<int:track_id>", methods=["GET"])
+@login_required
+def track(track_id):
+    track = Track.query.filter_by(id=track_id).first()
+    return render_template("track.html", track=track)

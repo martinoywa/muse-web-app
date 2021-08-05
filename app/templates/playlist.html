@@ -15,7 +15,11 @@
   <tr>
   {% for song in list_q1 %}
   <tr>
-    <td>{{ song.id }}</td>
+    <td>
+      <a href="{{ url_for('main.track', track_id=song.id) }}">
+        {{ song.id }}
+      </a>
+    </td>
     <td>{{ song.title }}</td>
     <td>{{ song.name }}</td>
   </tr>
@@ -33,7 +37,11 @@
   </tr>
   {% for song in list_q2 %}
   <tr>
-    <td>{{ song.id }}</td>
+    <td>
+      <a href="{{ url_for('main.track', track_id=song.id) }}">
+        {{ song.id }}
+      </a>
+    </td>
     <td>{{ song.title }}</td>
     <td>{{ song.name }}</td>
   </tr>
@@ -52,7 +60,11 @@
   <tr>
   {% for song in list_q3 %}
   <tr>
-    <td>{{ song.id }}</td>
+    <td>
+      <a href="{{ url_for('main.track', track_id=song.id) }}">
+        {{ song.id }}
+      </a>
+    </td>
     <td>{{ song.title }}</td>
     <td>{{ song.name }}</td>
   </tr>
@@ -71,7 +83,11 @@
   <tr>
   {% for song in list_q4 %}
   <tr>
-    <td>{{ song.id }}</td>
+    <td>
+      <a href="{{ url_for('main.track', track_id=song.id) }}">
+        {{ song.id }}
+      </a>
+    </td>
     <td>{{ song.title }}</td>
     <td>{{ song.name }}</td>
   </tr>
