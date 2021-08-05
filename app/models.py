@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+
 from app import db
 
 
@@ -10,6 +11,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f"<User: {self.username}>"
+
 
 class Track(db.Model):
     id = db.Column(db.Integer, primary_key=True)
