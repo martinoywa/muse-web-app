@@ -1,8 +1,6 @@
 import os
 import unittest
-from pathlib import Path
-from app.model.loaders import *
-from app.model.preprocessor import *
+
 from app.model.inference import *
 
 
@@ -49,7 +47,6 @@ class MyTestCase(unittest.TestCase):
         with open(lyrics_file, "r") as f:
             lyrics = f.readlines()
         self.assertEqual(1, aggregate_inference(image_file, lyrics))
-
 
     def test_inference_type(self):
         pass

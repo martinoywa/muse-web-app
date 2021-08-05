@@ -1,13 +1,12 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-from flask_login import login_required, current_user
-from .models import Track
-from app import db
-
-from .spectrogram import create_spectrogram
-from .model.inference import aggregate_inference
-
 from pathlib import Path
 
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask_login import login_required
+
+from app import db
+from .model.inference import aggregate_inference
+from .models import Track
+from .spectrogram import create_spectrogram
 
 main = Blueprint("main", __name__)
 
@@ -16,7 +15,7 @@ main = Blueprint("main", __name__)
 def index():
     return render_template("index.html")
 
- 
+
 @main.route("/playlist")
 @login_required
 def playlist():
@@ -27,6 +26,7 @@ def playlist():
 
     return render_template("playlist.html", list_q1=list_q1, list_q2=list_q2,
                            list_q3=list_q3, list_q4=list_q4)
+
 
 @main.route("/upload", methods=["GET", "POST"])
 @login_required

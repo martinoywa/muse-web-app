@@ -1,8 +1,9 @@
-from .loaders import *
-from .preprocessor import *
-import torch
 from pathlib import Path
 
+import torch
+
+from .loaders import *
+from .preprocessor import *
 
 audio_weights = Path("app/model/weights/audio/finetuned_Full-RESNET_model.pt")
 lyrics_weights = Path("app/model/weights/lyrics/finetuned_BERT_model-epoch-v.3.pt")
@@ -28,5 +29,5 @@ def aggregate_inference(spectrogram, lyrics):
     lyrics_output = lyrics_inference(lyrics)
     aggregate = audio_output + lyrics_output[0]
     _, pred = torch.max(aggregate, dim=1)
-    pred = pred.item()+1
+    pred = pred.item() + 1
     return pred

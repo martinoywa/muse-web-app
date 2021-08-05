@@ -1,5 +1,5 @@
-from torchvision import transforms
 from PIL import Image
+from torchvision import transforms
 from transformers import BertTokenizer
 
 

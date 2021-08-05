@@ -1,7 +1,8 @@
-from pydub import AudioSegment
-import matplotlib.pyplot as plt
-from scipy.io import wavfile
 from tempfile import mktemp
+
+import matplotlib.pyplot as plt
+from pydub import AudioSegment
+from scipy.io import wavfile
 
 
 def create_spectrogram(file):
