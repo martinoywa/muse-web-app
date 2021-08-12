@@ -16,15 +16,15 @@ def index():
     return render_template("index.html")
 
 
-@main.route("/playlist")
+@main.route("/clusters")
 @login_required
-def playlist():
+def clusters():
     list_q1 = Track.query.filter_by(quadrant=1)
     list_q2 = Track.query.filter_by(quadrant=2)
     list_q3 = Track.query.filter_by(quadrant=3)
     list_q4 = Track.query.filter_by(quadrant=4)
 
-    return render_template("playlist.html", list_q1=list_q1, list_q2=list_q2,
+    return render_template("clusters.html", list_q1=list_q1, list_q2=list_q2,
                            list_q3=list_q3, list_q4=list_q4)
 
 
@@ -61,6 +61,7 @@ def upload():
 
         return redirect(url_for("main.playlist"))
     return render_template("upload.html")
+
 
 @main.route("/track/<int:track_id>", methods=["GET"])
 @login_required
