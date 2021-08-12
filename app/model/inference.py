@@ -6,7 +6,7 @@ from .loaders import *
 from .preprocessor import *
 
 audio_weights = Path("app/model/weights/audio/finetuned_Full-RESNET_model.pt")
-lyrics_weights = Path("app/model/weights/lyrics/finetuned_BERT_model-epoch-v.3.pt")
+lyrics_weights = Path("app/model/weights/lyrics/finetuned_BERT_model-epoch-v.4.pt")
 
 audio_model = load_audio_model(audio_weights)
 lyrics_model = load_lyrics_model(lyrics_weights)
