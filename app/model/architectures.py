@@ -1,15 +1,38 @@
+import numpy as np
+
+import torch
+import torch.utils as utils
 import torch.nn as nn
-import torchvision
+import torch.nn.functional as F
+import torch.optim as optim
+
+from torchvision import transforms, datasets
 from transformers import BertForSequenceClassification
 
 
-def audio_model():
-    model = torchvision.models.resnet18(pretrained=True)
-    for param in model.parameters():
-        param.requires_grad = False
+class AudioNN(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        self.conv1 = nn.Conv2d(3, 16, 5)
+        self.conv2 = nn.Conv2d(16, 32, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.fc1 = nn.Linear(32*13*40, 1024)
+        self.fc2 = nn.Linear(1024, 4)
+        
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        print(x.shape)
+        x = torch.flatten(x, 1)
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        
+        return x
 
-    features = model.fc.in_features
-    model.fc = nn.Linear(in_features=features, out_features=4)
+
+def audio_model():
+    model = AudioNN()
 
     return model
 

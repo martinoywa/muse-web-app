@@ -5,7 +5,6 @@ from transformers import BertTokenizer
 
 def audio_preprocessor(spectrogram):
     transform = transforms.Compose([
-        transforms.Resize(256),
         transforms.ToTensor()
     ])
 
@@ -15,9 +14,6 @@ def audio_preprocessor(spectrogram):
 
 
 def lyrics_preprocessor(lyrics):
-    if type(lyrics) == list:
-        lyrics = "".join(lyrics).replace("\n", " ")
-
     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased",
                                               do_lower_case=True)
 
@@ -27,7 +23,7 @@ def lyrics_preprocessor(lyrics):
         return_attention_mask=True,
         padding=True,
         truncation=True,
-        max_length=64,
+        max_length=158,
         return_tensors="pt"
     )
 
