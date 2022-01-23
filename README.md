@@ -1,4 +1,4 @@
-# muse-streaming-website
+# muse-web-app
 Music streaming website for deploying MERA, a music clustering / classification algorithm based on mood / emotions people perceive in music.
 
 # Some fun with README.md file 😄
