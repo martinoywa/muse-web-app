@@ -6,7 +6,7 @@ from flask_login import login_required
 from app import db
 from .model.inference import aggregate_inference
 from .models import Track
-from .spectrogram import create_spectrogram
+from .spectrogram import create_mel_spectrogram
 
 main = Blueprint("main", __name__)
 
@@ -46,7 +46,7 @@ def upload():
             return redirect(url_for("main.upload"))
 
         # create spectrogram and get quadrant
-        create_spectrogram(song_file)
+        create_mel_spectrogram(song_file)
         spectrogram = Path("app/static/spectrogram/file.png")
         quadrant = aggregate_inference(spectrogram, lyrics)
 
@@ -59,7 +59,7 @@ def upload():
             flash("Failed to process cluster")
             return redirect(url_for("main.upload"))
 
-        return redirect(url_for("main.playlist"))
+        return redirect(url_for("main.clusters"))
     return render_template("upload.html")
 
 

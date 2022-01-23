@@ -8,6 +8,7 @@ def load_audio_model(weights):
     model.load_state_dict(torch.load(weights, map_location="cpu"), strict=False)
     model.to("cpu")
     model.eval()
+
     return model
 
 
@@ -16,4 +17,5 @@ def load_lyrics_model(weights):
     model.load_state_dict(torch.load(weights, map_location="cpu"), strict=False)
     model.to("cpu")
     model.eval()
+    
     return model
